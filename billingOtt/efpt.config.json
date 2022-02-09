@@ -1,0 +1,70 @@
+﻿{
+   "CodeGenerationMode": 2,
+   "ContextClassName": "VdcContext",
+   "ContextNamespace": null,
+   "DefaultDacpacSchema": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": true,
+   "ModelNamespace": null,
+   "OutputContextPath": "DataVdc",
+   "OutputPath": "Models\/Vdc",
+   "ProjectRootNamespace": "billingOtt",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 0,
+   "SelectedToBeGenerated": 0,
+   "Tables": [
+      {
+         "Name": "public.settings",
+         "ObjectType": 0
+      },
+      {
+         "Name": "public.accounts",
+         "ObjectType": 0
+      },
+      {
+         "Name": "public.tariff_attributes",
+         "ObjectType": 0
+      },
+      {
+         "Name": "public.account_tariffs",
+         "ObjectType": 0
+      },
+      {
+         "Name": "public.tariffs",
+         "ObjectType": 0
+      },
+      {
+         "Name": "public.charges",
+         "ObjectType": 0
+      },
+      {
+         "Name": "public.attribute_locales",
+         "ObjectType": 0
+      },
+      {
+         "Name": "public.attributes",
+         "ObjectType": 0
+      },
+      {
+         "Name": "public.tariff_locales",
+         "ObjectType": 0
+      }
+   ],
+   "UiHint": "Vdc",
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": false,
+   "UseDbContextSplitting": false,
+   "UseFluentApiOnly": false,
+   "UseHandleBars": false,
+   "UseInflector": true,
+   "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": true,
+   "UseNoConstructor": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": true,
+   "UseNodaTime": true,
+   "UseNullableReferences": true,
+   "UseSchemaFolders": false,
+   "UseSpatial": false
+}
