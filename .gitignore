@@ -349,6 +349,7 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 
-billingOtt/Data*/*
-API/Data*/*
-Infrastructure/Data*/*
+#billingOtt/Data*/*
+#API/Data*/*
+#Infrastructure/Data*/*
+Data\BillingContext.cs
