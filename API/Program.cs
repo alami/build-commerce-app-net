@@ -22,6 +22,7 @@ using (var scope = app.Services.CreateScope())
     {
         var context = services.GetService<BillingContext>();
         await context.Database.MigrateAsync();
+        await BillingContextSeed.SeedAsync(context, loggerFactory);
     } catch (Exception ex)
     {
         var logger = loggerFactory.CreateLogger<Program>();

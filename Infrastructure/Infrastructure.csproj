@@ -1,6 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <None Remove="Data\BillingContext.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj" />
   </ItemGroup>
 
@@ -17,6 +21,7 @@
 	
   <ItemGroup>
     <Folder Include="Data\Migrations\" />
+    <Folder Include="Data\SeedData\" />
   </ItemGroup>
 
 </Project>
