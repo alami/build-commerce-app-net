@@ -352,4 +352,4 @@ MigrationBackup/
 #billingOtt/Data*/*
 #API/Data*/*
 #Infrastructure/Data*/*
-Data\BillingContext.cs
+Infrastructure/Data/BillingContext.cs
