@@ -13,18 +13,29 @@ namespace API.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly BillingContext _context;
-        private readonly IProductRepository _repo;
+//        private readonly IProductRepository _repo;
+        private readonly IGenericRepository<Product> _productRepo;
+        private readonly IGenericRepository<ProductBrand> _productBrandRepo;
+        private readonly IGenericRepository<ProductType> _productTypeRepo;
 
-        public ProductsController(BillingContext context, IProductRepository repo)
+        public ProductsController(BillingContext context,
+            //IProductRepository repo
+            IGenericRepository<Product> productRepo,
+            IGenericRepository<ProductBrand> productBrandRepo,
+            IGenericRepository<ProductType> productTypeRepo
+            ) 
         {
             this._context = context;
-            this._repo = repo;
+            this._productRepo = productRepo;
+            this._productBrandRepo = productBrandRepo;
+            this._productTypeRepo = productTypeRepo;
         }
         // GET: api/<ProductsController>
         [HttpGet]
         public async Task<ActionResult<List<Product>>> Get()
         {
-            var products = await _repo.GetProducstAsync();// _context.Products.ToListAsync();
+            var products = await _productRepo.ListAllAsync();// _context.Products.ToListAsync();
+//            var products = await _repo.GetProducstAsync();// _context.Products.ToListAsync();
             return Ok(products);
             //return new string[] { "value1", "value2" };
         }
@@ -33,7 +44,8 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Product>> Get(int id)
         {
-            return await _repo.GetProductByIdAsync(id);// _context.Products.FindAsync(id); //"value";
+            return await _productRepo.GetByIdAsync(id);
+//            return await _repo.GetProductByIdAsync(id);// _context.Products.FindAsync(id); //"value";
         }
 
         // POST api/<ProductsController>
@@ -56,12 +68,12 @@ namespace API.Controllers
         [HttpGet("brands")]
         public async Task<ActionResult<List<ProductBrand>>> GetProductBrands()
         {
-            return Ok(await _repo.GetProductBrandsAsync());
+            return Ok(await _productBrandRepo.ListAllAsync());
         }
         [HttpGet("types")]
         public async Task<ActionResult<List<ProductType>>> GetProductTypes()
         {
-            return Ok(await _repo.GetProductTypesAsync());
+            return Ok(await _productTypeRepo.ListAllAsync());
         }
     }
 }
