@@ -3,6 +3,7 @@ using Core.Models.Billing;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Core.Interfaces;
+using Core.Specifications;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -34,21 +35,17 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<List<Product>>> Get()
         {
-            var products = await _productRepo.ListAllAsync();// _context.Products.ToListAsync();
-//            var products = await _repo.GetProducstAsync();// _context.Products.ToListAsync();
+            var spec = new ProductsWithTypesAndBrandsSpecification();
+            var products = await _productRepo.ListAsync(spec);
             return Ok(products);
-            //return new string[] { "value1", "value2" };
         }
 
-        // GET api/<ProductsController>/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Product>> Get(int id)
         {
             return await _productRepo.GetByIdAsync(id);
-//            return await _repo.GetProductByIdAsync(id);// _context.Products.FindAsync(id); //"value";
         }
 
-        // POST api/<ProductsController>
         [HttpPost]
         public void Post([FromBody] string value)
         {

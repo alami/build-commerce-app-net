@@ -1,5 +1,6 @@
 ﻿using Core.Interfaces;
 using Core.Models.Billing;
+using Core.Specifications;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,20 @@ namespace Infrastructure.Data
 //                .Include(p => p.ProductType)
 //                .Include(p => p.ProductBrand)
                 .FindAsync(id);//.FirstOrDefaultAsync(p=>p.Id==id); 
+        }
+
+        public async Task<T> GetEntityWithSpec(ISpecification<T> spec)
+        {
+            return await ApplySpecification(spec).FirstOrDefaultAsync();
+        }
+
+        public async Task<IReadOnlyList<T>> ListAsync(ISpecification<T> spec)
+        {
+            return await ApplySpecification(spec).ToListAsync();
+        }
+        private IQueryable<T> ApplySpecification(ISpecification<T> spec)
+        {
+            return SpecificationEvaluator<T>.GetQuery(_context.Set<T>().AsQueryable(), spec);
         }
     }
 }
