@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Core.Interfaces;
 using Core.Specifications;
 using API.Dtos;
+using AutoMapper;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -19,18 +20,20 @@ namespace API.Controllers
         private readonly IGenericRepository<Product> _productRepo;
         private readonly IGenericRepository<ProductBrand> _productBrandRepo;
         private readonly IGenericRepository<ProductType> _productTypeRepo;
+        private readonly IMapper _mapper;
 
         public ProductsController(BillingContext context,
             //IProductRepository repo
             IGenericRepository<Product> productRepo,
             IGenericRepository<ProductBrand> productBrandRepo,
-            IGenericRepository<ProductType> productTypeRepo
-            ) 
+            IGenericRepository<ProductType> productTypeRepo,
+            IMapper mapper)
         {
-            this._context = context;
-            this._productRepo = productRepo;
-            this._productBrandRepo = productBrandRepo;
-            this._productTypeRepo = productTypeRepo;
+            _mapper = mapper;
+            _context = context;
+            _productRepo = productRepo;
+            _productBrandRepo = productBrandRepo;
+            _productTypeRepo = productTypeRepo;
         }
         // GET: api/<ProductsController>
         [HttpGet]
@@ -55,16 +58,7 @@ namespace API.Controllers
         {
             var spec = new ProductsWithTypesAndBrandsSpecification(id);
             var product = await _productRepo.GetEntityWithSpec(spec);
-            return new ProductToReturnDto
-            {
-                Id = product.Id,
-                Name = product.Name,
-                Description = product.Description,
-                PuctureUrl = product.PuctureUrl,
-                Price = product.Price,
-                ProductBrand = product.ProductBrand,
-                ProductType = product.ProductType
-            };
+            return _mapper.Map<Product, ProductToReturnDto>(product);
         }
          
         [HttpPost]
