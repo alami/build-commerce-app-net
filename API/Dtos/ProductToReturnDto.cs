@@ -5,11 +5,11 @@ namespace API.Dtos
     public class ProductToReturnDto
     {
         public int Id { get; set; }
-        public string Name { get; set; } = null!;
-        public string Description { get; set; } = null!;
+        public string Name { get; set; }
+        public string Description { get; set; }
         public int Price { get; set; }
-        public string PuctureUrl { get; set; } = null!;
-        public ProductType ProductType { get; set; } = null!;
-        public ProductBrand ProductBrand { get; set; } = null!;
+        public string PuctureUrl { get; set; }
+        public string ProductType { get; set; }
+        public string ProductBrand { get; set; }
     }
 }
